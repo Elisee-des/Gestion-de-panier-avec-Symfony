@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block body %}
+{% for message in app.flashes('message') %}
+    {{ message }}
+{% endfor %}
     <section class="bg-light p-3">
         <h1>Les produits</h1>
     </section>
@@ -16,7 +19,7 @@
                     <p>{{ product.price }} €</p>
                     <img class="w-100" src="{{ asset('uploads/') ~ product.image }}" alt="Image de {{ product.title }}">
                     <hr>
-                    <a href="" class="btn btn-success">
+                    <a href="{{ path("cart_add", {id: product.id}) }}" class="btn btn-success">
                         <i class="bi bi-cart-plus"></i> Ajouter
                     </a>
                 </div>
